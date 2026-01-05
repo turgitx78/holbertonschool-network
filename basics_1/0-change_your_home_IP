@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Configures /etc/hosts:
+# - localhost -> 127.0.0.2
+# - facebook.com -> 8.8.8.8
+
+# Update localhost mapping
+sudo sed -i 's/^127\.0\.0\.1[[:space:]]\+localhost/127.0.0.2\tlocalhost/' /etc/hosts
+
+# Ensure facebook.com mapping exists (add if missing, replace if present)
+if grep -qE '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+[[:space:]]+facebook\.com' /etc/hosts; then
+  sudo sed -i 's/^[0-9]\+\(\.[0-9]\+\)\{3\}[[:space:]]\+facebook\.com/8.8.8.8\tfacebook.com/' /etc/hosts
+else
+  echo -e "8.8.8.8\tfacebook.com" | sudo tee -a /etc/hosts > /dev/null
+fi
