@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Displays listening ports (TCP/UDP) with PID and program name
+# Displays listening sockets with PID and program name
 
-netstat -lntup
+netstat -lp
