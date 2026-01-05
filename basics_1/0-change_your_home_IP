@@ -33,5 +33,5 @@ END {
 ' /etc/hosts > "$HOSTS_TMP"
 
 # Overwrite /etc/hosts without rename (avoids sed -i issues)
-cat "$HOSTS_TMP" | sudo tee /etc/hosts > /dev/null
+sudo tee /etc/hosts < "$HOSTS_TMP" > /dev/null
 rm -f "$HOSTS_TMP"
